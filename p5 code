@@ -1,0 +1,52 @@
+let radius = 100;
+let score = 0;
+let x, y;
+let r, b, g;
+
+function setup()
+{
+  createCanvas(windowWidth, windowHeight);
+  x = random(windowWidth);
+  y = random(windowHeight);
+  r = random(255);
+  b = random(255);
+  g = random(255);
+  
+}
+
+function draw()
+{
+  background(500);
+  fill(r, b, g);
+  noStroke();
+  ellipse(x, y, radius * 2, radius * 2);
+  text("Score = " + score, 10, 20);
+}
+
+function mousePressed()
+{
+  let d = dist(mouseX, mouseY, x, y);
+  
+  if (d < radius)
+  {
+    newCircle();
+    score++;
+    if (score%10 == 0)
+    {
+      radius /= 2;
+    }
+  }
+}
+
+function newCircle() 
+{
+  x = random(windowWidth);
+  y = random(windowHeight);
+  r = random(255);
+  b = random(255);
+  g = random(255);
+}
+
+//moves circle every second
+setInterval(newCircle, 1000);
+
